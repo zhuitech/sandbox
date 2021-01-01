@@ -2,19 +2,25 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\URL;
+use ZhuiTech\BootAdmin\Providers\AdminServiceProvider;
+use ZhuiTech\BootLaravel\Providers\AbstractServiceProvider;
+use ZhuiTech\BootLaravel\Providers\LaravelProvider;
+use ZhuiTech\BootLaravel\Providers\ProxyAuthProvider;
 
-class AppServiceProvider extends ServiceProvider
+class AppServiceProvider extends AbstractServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
+    protected $providers = [
+        LaravelProvider::class,
+
+	    AdminServiceProvider::class,
+
+	    // 代理端没有同步用户表时启用
+	    // ProxyAuthProvider::class,
+
+        // 模块
+    ];
 
     /**
      * Bootstrap any application services.
@@ -23,6 +29,26 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // 中文
+        Carbon::setLocale('zh');
+
+	    // 解决代理问题
+	    URL::forceRootUrl(config('app.url'));
+
+        parent::boot();
+    }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        if (!empty(env('CUSTOM_PROVIDER'))) {
+            $this->providers[] = env('CUSTOM_PROVIDER');
+        }
+
+        parent::register();
     }
 }

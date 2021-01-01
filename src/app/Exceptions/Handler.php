@@ -13,7 +13,11 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        //
+        /*
+         * 当默认guard是api时，无效的token会导致内存溢出
+         * https://github.com/laravel/passport/issues/440
+         */
+        \League\OAuth2\Server\Exception\OAuthServerException::class,
     ];
 
     /**
