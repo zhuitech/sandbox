@@ -4,9 +4,6 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Illuminate\Support\Facades\Log;
-use ZhuiTech\BootLaravel\Scheduling\ScheduleRegistry;
-
 
 class Kernel extends ConsoleKernel
 {
@@ -27,9 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // 加载定时任务
-        $registry = resolve(ScheduleRegistry::class);
-        $registry->register($schedule);
+        // $schedule->command('inspire')->hourly();
     }
 
     /**
@@ -42,13 +37,5 @@ class Kernel extends ConsoleKernel
         $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
-    }
-
-    public function bootstrap()
-    {
-        parent::bootstrap();
-
-        // 设置独立的日志文件
-        Log::setDefaultDriver('console');
     }
 }
