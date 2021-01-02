@@ -7,6 +7,6 @@ php artisan zhuitech:admin
 php artisan zhuitech:passport
 
 # 链接中台
-php artisan zhuitech:service
+#php artisan zhuitech:service
 
 echo "Install finish."

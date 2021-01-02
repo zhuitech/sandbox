@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\URL;
+use ZhuiTech\App\Main\Providers\PackageServiceProvider;
 use ZhuiTech\BootAdmin\Providers\AdminServiceProvider;
 use ZhuiTech\BootLaravel\Providers\AbstractServiceProvider;
 use ZhuiTech\BootLaravel\Providers\LaravelProvider;
@@ -20,6 +21,7 @@ class AppServiceProvider extends AbstractServiceProvider
 	    // ProxyAuthProvider::class,
 
         // 模块
+        PackageServiceProvider::class
     ];
 
     /**

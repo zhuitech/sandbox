@@ -2,6 +2,7 @@
 
 namespace ZhuiTech\App\Main\Providers;
 
+use ZhuiTech\App\Main\Admin\Extension;
 use ZhuiTech\BootLaravel\Providers\AbstractServiceProvider;
 
 class PackageServiceProvider extends AbstractServiceProvider
@@ -10,6 +11,8 @@ class PackageServiceProvider extends AbstractServiceProvider
     {
         $this->loadRoutes();
         $this->loadMigrations();
+
+        Extension::boot();
 
         parent::boot();
     }
