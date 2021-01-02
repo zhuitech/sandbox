@@ -37,4 +37,4 @@ php artisan ide-helper:meta
 php artisan ide-helper:models -W -R --dir=packages
 
 # 启动
-#php artisan serve --port=9000
+php artisan serve --port=8000
